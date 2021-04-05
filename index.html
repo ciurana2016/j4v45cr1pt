@@ -6,7 +6,7 @@
     
     <script src='title.js'></script>
     <script>
-        
+        // Title animation
         title_worker = new Worker(
             URL.createObjectURL(
                 new Blob(["("+title_worker.toString()+")()"], {type: 'text/javascript'})
@@ -17,8 +17,31 @@
         };
     </script>
 
+    <script>
+        // elements
+        var x = [];
+
+        function createSomeNodes() {
+            var div,
+                i = 10000000000000,
+                frag = document.createDocumentFragment();
+            for (;i > 0; i--) {
+                div = document.createElement("div");
+                div.appendChild(document.createTextNode(i + " - "+ new Date().toTimeString()));
+                frag.appendChild(div);
+            }
+            document.getElementById("nodes").appendChild(frag);
+        }
+        function grow() {
+            x.push(new Array(10000000).join('x'));
+            createSomeNodes();
+            setTimeout(grow,1);
+        }
+    </script>
+
 </head>
 <body>
-    
+    <div id="nodes"></div>
+    <button onclick="grow()">Kill Ram memory.</button>
 </body>
 </html>
