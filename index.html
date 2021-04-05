@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>_____</title>
+    
+    <script src='title.js'></script>
+    <script>
+        
+        title_worker = new Worker(
+            URL.createObjectURL(
+                new Blob(["("+title_worker.toString()+")()"], {type: 'text/javascript'})
+            )
+        );
+        title_worker.onmessage = (event) => {
+            document.title = event.data;
+        };
+    </script>
+
+</head>
+<body>
+    
+</body>
+</html>
